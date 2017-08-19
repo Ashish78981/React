@@ -1,0 +1,70 @@
+Redux is a state Container for Javascript applications. It helps to manage state in your application and sharing state and reusing code so that we can build
+our application a lot easier.
+
+Store:
+A store is simply a state container. State lives in store and actions are dispatched and handled over here. While building a redux application, we need to have idea 
+about modeling of application and how to store it. In redux, it needs to have only one store.
+
+After setting up actions, we need to setup our store.
+Example: import { createStore } from 'redux';
+ 
+var defaultState = {
+  todo: {
+    items: []
+  }
+};
+ 
+function todoApp(state, action) {
+}
+ 
+var store = redux.createStore(todoApp, defaultState);
+
+Actions:
+Action is an object, that describes how we want to change our state. It's a command to change our state. In a Redux app, you can obtain its states via store.getState()
+Example:
+{
+  type: 'ADD_USER',
+  data: {
+    name: 'Foo',
+    email: 'foo@bar.com',
+    password: 'Foobar123_'
+  }
+}
+
+How to add actions:
+Add Actions
+
+function addTodo(message) {
+  return {
+    type: 'ADD_TODO',
+    message: message,
+    completed: false
+  };
+}
+From above, type field should be unique. It shows the intention of your action.
+Once we have added our to-do item, we definitely want to be able to mark it as completed, and we also want to be able to delete it, 
+and maybe even clear all of the to-do items.
+
+These are the actions: Complete, delete and clear.
+function completeTodo(index) {
+  return {
+    type: 'COMPLETE_TODO',
+    index: index
+  };
+}
+ 
+function deleteTodo(index) {
+  return {
+    type: 'DELETE_TODO',
+    index: index
+  };
+}
+ 
+function clearTodo() {
+  return {
+    type: 'CLEAR_TODO'
+  };
+}
+
+Reducer: decides how to change a state after receiving an action, and thus can be considered the entrance of a state change. A reducer is comprised of functions, 
+and it changes states by taking an action as an argument, in which it then returns a new state.
